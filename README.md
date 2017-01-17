@@ -4,5 +4,6 @@ Step by step refactoring of a video store from M Fowler book "Refactoring: Impro
 ## Commands
 
 - Build the project: `gradlew build`
+- Test the project: `gradlew test`
 - Step through the commits: `./git-step`
 - See the difference between the last two commits: `./git-diff`
