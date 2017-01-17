@@ -1,0 +1,24 @@
+#!/usr/bin/env ruby
+
+all = `git rev-list master --reverse`.split
+
+if File.exist?('.git-step')
+  index = all.index File.read('.git-step').chomp
+  index += 1 if index
+end
+
+index ||= 0
+index = all.count - 1 unless all[index]
+current = all[index]
+if index > 0
+  previous = all[index-1]
+else
+  previous = current
+end 
+
+puts "Jumping to commit #{current} (#{index+1} of #{all.length})"
+
+`git checkout #{current} 2>&1 > /dev/null`
+
+File.write '.git-step', current
+File.write '.git-prev', previous
